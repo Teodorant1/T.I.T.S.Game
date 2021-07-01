@@ -1,0 +1,50 @@
+package sample;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class RNGjesus {
+
+    static   SqlMinion Sqlminion1 = new SqlMinion();
+    static   ArrayList <Integer> qnumbers = new ArrayList();
+    static   ArrayList <Integer> snumbers = new ArrayList();
+    static   ArrayList <String> payload = new ArrayList();
+    int gamesize;
+    public int getGamesize() {
+        return gamesize;
+    }
+
+    public void setGamesize(int gamesize) {
+        this.gamesize = gamesize;
+    }
+
+
+    public RNGjesus(){}
+
+    public void preparedecks () throws SQLException {
+
+        int qlength = Sqlminion1.questSIZE();
+        int slength = Sqlminion1.sitsSIZE();
+        if (qlength >= slength) {setGamesize(slength); }
+        else {setGamesize(qlength);}
+        for (int i = 1; i < gamesize; i++)
+        {qnumbers.add(i);
+            snumbers.add(i);}
+        Collections.shuffle(qnumbers);
+        Collections.shuffle(snumbers);}
+
+    public String CreateCard () throws SQLException{
+        String s = (Sqlminion1.pull_SITUATION(snumbers.get(0)));
+        String q = (Sqlminion1.pull_QUESTION(qnumbers.get(0)));
+        payload.add(s + " , " + q);
+        snumbers.remove(0);
+        qnumbers.remove(0);
+        return (payload.get(payload.size() - 1 ) );}
+
+ //   public String createCardText (ArrayList <String>Shuffleboy)     {return Shuffleboy }
+
+
+
+}
+

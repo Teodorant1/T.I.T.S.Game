@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="699.0" prefWidth="977.0" GridPane.columnIndex="1">
+         <children>
+            <Button fx:id="downloaderOfCards1" layoutX="22.0" layoutY="575.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="345.0" text="Count - 0" />
+            <TextField fx:id="FileLocation1" alignment="CENTER" layoutX="21.0" layoutY="660.0" prefHeight="25.0" prefWidth="650.0" text="Write/Copy paste the location of the folder you want to upload to the server. Use \\ instead of \ for the file location" />
+            <Button fx:id="BatchUpload1" layoutX="21.0" layoutY="620.0" minWidth="50.0" mnemonicParsing="false" onAction="#uploadcards" prefHeight="25.0" prefWidth="107.0" text="Batch Upload" />
+            <TextArea fx:id="Creator1" layoutX="545.0" layoutY="615.0" prefHeight="37.0" prefWidth="225.0" text="Type in the name of the card creator" />
+            <Label fx:id="cardfinal" alignment="CENTER" layoutX="27.0" layoutY="8.0" prefHeight="167.0" prefWidth="908.0" text="Press &quot;Setup Decks&quot; to shuffle the decks " textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="Destination1" layoutX="156.0" layoutY="614.0" prefHeight="38.0" prefWidth="381.0" text="Type s or q depending if you are uploading a situation or a question" />
+            <Button fx:id="update1" layoutX="804.0" layoutY="608.0" mnemonicParsing="false" onAction="#get" prefHeight="25.0" prefWidth="118.0" text="update results" />
+            <Label fx:id="scores" alignment="CENTER" layoutX="424.0" layoutY="174.0" prefHeight="319.0" prefWidth="522.0" text="scores go here" />
+            <Label fx:id="answers" alignment="CENTER" layoutX="27.0" layoutY="172.0" prefHeight="386.0" prefWidth="381.0" text="answers go here" />
+            <TextField fx:id="username" layoutX="795.0" layoutY="562.0" promptText="username" />
+            <TextField fx:id="votetarget" layoutX="423.0" layoutY="515.0" promptText="votetarget" />
+            <TextField fx:id="gameidtext" layoutX="423.0" layoutY="562.0" promptText="gameidtext" />
+            <Button fx:id="answerbutton" layoutX="681.0" layoutY="515.0" mnemonicParsing="false" onAction="#answer" prefHeight="25.0" prefWidth="107.0" text="answerbutton&gt;" />
+            <Button fx:id="joingame" layoutX="685.0" layoutY="562.0" mnemonicParsing="false" onAction="#joingame" prefHeight="25.0" prefWidth="107.0" text="&lt;joingame&gt;" />
+            <Button fx:id="creategame" layoutX="582.0" layoutY="562.0" mnemonicParsing="false" onAction="#createGame" prefHeight="25.0" prefWidth="97.0" text="&lt;creategame&gt;" />
+            <Button fx:id="votebutton" layoutX="582.0" layoutY="515.0" mnemonicParsing="false" onAction="#vote" prefHeight="25.0" prefWidth="89.0" text="&lt;votebutton" />
+            <TextField fx:id="personalanswer" layoutX="795.0" layoutY="515.0" promptText="personalanswer" />
+            <Button fx:id="sendstuff" layoutX="804.0" layoutY="648.0" mnemonicParsing="false" onAction="#set" prefHeight="38.0" prefWidth="118.0" text="sendstuff" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
