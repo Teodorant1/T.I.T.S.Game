@@ -36,32 +36,28 @@ public class Courier extends Task<String> {
             (String mode, String gameid, String payload, String judge)
             throws Exception {
         String fatman = mode + delimiter + gameid + delimiter + payload + delimiter + judge;
+
         try (Socket s = new Socket("localhost", socket1);
              DataInputStream din = new DataInputStream(s.getInputStream());
              DataOutputStream dout = new DataOutputStream(s.getOutputStream());
 
-
-        ) {
-
-            try {
-                dout.writeUTF(fatman);
+        ) { try {dout.writeUTF(fatman);
                 dout.flush();
-                String lilboy = (din.readUTF());
-                updateValue(lilboy);
+                System.out.println("1");
+                updateValue(din.readUTF());
+                System.out.println(getValue());
+                System.out.println("4");
 
                 return getValue();
-            } catch (IOException e) {
+
+            } catch (EOFException e)
+            {e.printStackTrace();}
+            catch (IOException e) {
                 e.printStackTrace();
             }
-            
+
         }
-
-        return getValue();
-    }
-
-
-
-    }
+        return getValue();}}
 
 
 

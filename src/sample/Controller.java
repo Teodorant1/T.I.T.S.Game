@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Controller implements Initializable {
     @FXML
@@ -100,66 +102,61 @@ public class Controller implements Initializable {
     @FXML
     private void createGame(ActionEvent event) throws Exception {
         {
-            try {
-               Courier task1 = new Courier("addsession", gameidtext.getText(), username.getText(), "Paloki",3333);
-               Thread thread1 = new Thread(task1);
-                thread1.setDaemon(true);
+
+            try { Courier task1 = new Courier("addsession", gameidtext.getText(), username.getText(), "Paloki",3333);
+                Thread thread1 = new Thread(task1);
+                cardfinal.textProperty().bind(task1.valueProperty());
+                task1.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
                 thread1.start();
 
-            } catch (Exception e) {e.printStackTrace();}
-             {
-                 Courier task2 = new Courier("getquestion", gameidtext.getText(), placeholder, placeholder, 3334 );
-                 Thread thread2 = new Thread(task2);
-                 thread2.setDaemon(true);
-                 cardfinal.textProperty().bind(task2.valueProperty());
-                 task2.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
-                 thread2.start();
+                Thread.sleep(2000);}
+            catch (Exception e) {e.printStackTrace();}
+            try {Courier task1 = new Courier("getanswers", gameidtext.getText(), placeholder, placeholder,3334);
+                Thread thread1 = new Thread(task1);
+                answers.textProperty().bind(task1.valueProperty());
+                task1.setOnSucceeded( e -> {answers.textProperty().unbind();});
+                thread1.start();
 
-                 Courier task1 = new Courier("getanswers", gameidtext.getText(), placeholder, placeholder, 3335);
-                 Thread thread1 = new Thread(task1);
-                 thread1.setDaemon(true);
-                 answers.textProperty().bind(task1.valueProperty());
-                 task1.setOnSucceeded( e -> {answers.textProperty().unbind();});
-                 thread1.start();
 
-                 Courier task3 = new Courier("getscore", gameidtext.getText(), placeholder, placeholder, 3336);
-                 Thread thread3 = new Thread(task3);
-                 thread3.setDaemon(true);
-                 scores.textProperty().bind(task3.valueProperty());
-                 task3.setOnSucceeded( e -> {scores.textProperty().unbind();});
-                 thread3.start();
-             }
+                Courier task2 = new Courier("getquestion", gameidtext.getText(), placeholder, placeholder,3335);
+                Thread thread2 = new Thread(task2);
+                cardfinal.textProperty().bind(task2.valueProperty());
+                task2.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
+                thread2.start();
+
+                Courier task3 = new Courier("getscore", gameidtext.getText(), placeholder, placeholder,3336);
+                Thread thread3 = new Thread(task3);
+                scores.textProperty().bind(task3.valueProperty());
+                task3.setOnSucceeded( e -> {scores.textProperty().unbind();});
+                thread3.start();}
+            catch (Exception e) {e.printStackTrace();}
+
+
+
         }
 
     }
     @FXML
     private void get(ActionEvent event) throws Exception
-    {
-
-
-
-        Courier task2 = new Courier("getquestion", gameidtext.getText(), placeholder, placeholder, 3334 );
-        Thread thread2 = new Thread(task2);
-        thread2.setDaemon(true);
-        cardfinal.textProperty().bind(task2.valueProperty());
-        task2.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
-        thread2.start();
-
-        Courier task1 = new Courier("getanswers", gameidtext.getText(), placeholder, placeholder, 3335);
+       {Courier task1 = new Courier("getanswers", gameidtext.getText(), placeholder, placeholder,3334);
         Thread thread1 = new Thread(task1);
-        thread1.setDaemon(true);
         answers.textProperty().bind(task1.valueProperty());
         task1.setOnSucceeded( e -> {answers.textProperty().unbind();});
         thread1.start();
 
-        Courier task3 = new Courier("getscore", gameidtext.getText(), placeholder, placeholder, 3336);
+
+        Courier task2 = new Courier("getquestion", gameidtext.getText(), placeholder, placeholder,3335);
+        Thread thread2 = new Thread(task2);
+        cardfinal.textProperty().bind(task2.valueProperty());
+        task2.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
+        thread2.start();
+
+        Courier task3 = new Courier("getscore", gameidtext.getText(), placeholder, placeholder,3336);
         Thread thread3 = new Thread(task3);
-        thread3.setDaemon(true);
         scores.textProperty().bind(task3.valueProperty());
         task3.setOnSucceeded( e -> {scores.textProperty().unbind();});
-        thread3.start();
+        thread3.start();}
 
-    }
 
     @FXML
     private void set(ActionEvent event) throws Exception
@@ -188,23 +185,19 @@ public class Controller implements Initializable {
             }
             {   Courier task1 = new Courier("getanswers", gameidtext.getText(), placeholder, placeholder,3334);
                 Thread thread1 = new Thread(task1);
-                thread1.setDaemon(true);
                 answers.textProperty().bind(task1.valueProperty());
-
                 task1.setOnSucceeded( e -> {answers.textProperty().unbind();});
                 thread1.start();
 
 
                 Courier task2 = new Courier("getquestion", gameidtext.getText(), placeholder, placeholder,3335);
                 Thread thread2 = new Thread(task2);
-                thread2.setDaemon(true);
                 cardfinal.textProperty().bind(task2.valueProperty());
                 task2.setOnSucceeded( e -> {cardfinal.textProperty().unbind();});
                 thread2.start();
 
                 Courier task3 = new Courier("getscore", gameidtext.getText(), placeholder, placeholder,3336);
                 Thread thread3 = new Thread(task3);
-                thread3.setDaemon(true);
                 scores.textProperty().bind(task3.valueProperty());
                 task3.setOnSucceeded( e -> {scores.textProperty().unbind();});
                 thread3.start();}
