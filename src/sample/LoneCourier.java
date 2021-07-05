@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CarbonCourier extends Task<Void> {
+public class LoneCourier extends Task<Void> {
 
 
 
@@ -19,7 +19,7 @@ public class CarbonCourier extends Task<Void> {
 
     public final String delimiter = "spergzilion";
 
-    public CarbonCourier(String mode, String gameid, String payload, String judge)
+    public LoneCourier(String mode, String gameid, String payload, String judge)
     {this.mode1 = mode;
         this.gameid1 = gameid;
         this.payload1 = payload;
